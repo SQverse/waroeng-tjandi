@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waroeng Tjandi Ungaran — Pesona Alam Satu Rasa</title>
+  <meta name="description" content="Waroeng Tjandi Ungaran: restoran keluarga dengan masakan Nusantara, suasana alam yang asri, dan pemandangan indah Gunung Ungaran. Buka setiap hari 10.00–21.00 WIB.">
+  <meta name="theme-color" content="#0f3d2a">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Waroeng Tjandi Ungaran — Pesona Alam Satu Rasa">
+  <meta property="og:description" content="Restoran keluarga dengan masakan Nusantara dan pemandangan Gunung Ungaran.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta property="og:type" content="restaurant">
+
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       DASAR
+       ========================================================== */
+    :root {
+      --green: #0f3d2a;
+      --green-2: #17573b;
+      --green-dark: #0b2e20;
+      --gold: #e9bd4b;
+      --gold-2: #c9982a;
+      --cream: #faf6ec;
+      --ink: #1d2a22;
+      --muted: #56645b;
+      --radius: 18px;
+      --shadow: 0 6px 20px rgba(15, 61, 42, .08);
+    }
+
+    *,
+    *::before,
+    *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+    body {
+      font-family: Inter, system-ui, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: Lora, Georgia, serif; line-height: 1.15; }
+
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
+    }
+
+    /* ==========================================================
+       TOMBOL
+       ========================================================== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      border: 2px solid transparent; border-radius: 999px;
+      font-weight: 600; font-size: 15px;
+      cursor: pointer; transition: .2s;
+    }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+
+    .btn-gold { background: linear-gradient(135deg, #f3d06c, var(--gold)); color: #1c2a1f; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(233, 189, 75, .4); }
+
+    .btn-line { border-color: #fff; color: #fff; }
+    .btn-line:hover { background: #fff; color: var(--green); }
+
+    .btn-outline { border-color: var(--gold-2); color: var(--green); padding: 8px 18px; font-size: 14px; }
+    .btn-outline:hover { background: var(--gold); border-color: var(--gold); }
+
+    /* ==========================================================
+       NAVIGASI
+       ========================================================== */
+    header { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: .3s; }
+    header.solid { background: rgba(15, 61, 42, .97); box-shadow: 0 4px 20px rgba(0, 0, 0, .25); }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+
+    .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-family: Lora, serif; font-weight: 700; font-size: 20px; }
+    .brand svg { width: 44px; height: 26px; }
+    .brand small { display: block; font-family: Inter, sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 3px; opacity: .85; }
+
+    .menu { display: flex; align-items: center; gap: 34px; list-style: none; }
+    .menu a { color: #fff; font-weight: 500; font-size: 15px; padding: 6px 0; border-bottom: 2px solid transparent; }
+    .menu a:hover,
+    .menu a.active { border-color: var(--gold); }
+    .menu .btn { padding: 9px 20px; border: 0; color: #1c2a1f; }
+
+    .burger { display: none; width: 42px; height: 42px; background: none; border: 0; cursor: pointer; }
+    .burger span { display: block; height: 2px; margin: 7px 8px; background: #fff; transition: .3s; }
+
+    /* ==========================================================
+       HERO
+       ========================================================== */
+    .hero {
+      position: relative; min-height: 620px;
+      display: flex; align-items: center; color: #fff;
+      background: var(--green) url(images/hero.jpg) right 35% / cover no-repeat;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, #0f3d2a 0%, rgba(15, 61, 42, .96) 28%, rgba(15, 61, 42, .55) 48%, rgba(15, 61, 42, 0) 68%),
+        linear-gradient(180deg, rgba(8, 30, 20, .6) 0, rgba(8, 30, 20, 0) 22%);
+    }
+    .hero .wrap { position: relative; width: 100%; padding-top: 100px; padding-bottom: 90px; }
+    .hero-text { max-width: 470px; }
+    .hero h1 { font-size: clamp(44px, 6.5vw, 72px); text-shadow: 0 3px 14px rgba(0, 0, 0, .35); }
+    .hero .sub { display: flex; align-items: center; gap: 14px; margin: 10px 0 18px; font-size: 18px; letter-spacing: 8px; }
+    .hero .sub::before,
+    .hero .sub::after { content: ""; width: 56px; height: 1px; background: var(--gold); }
+    .hero p { max-width: 400px; margin-bottom: 26px; font-size: 17px; }
+
+    .tagline {
+      display: inline-block; margin-bottom: 22px; padding: 4px 30px 6px;
+      font-family: "Kaushan Script", cursive; font-size: 30px; color: #143523;
+      background: linear-gradient(100deg, #f6dc8c, #e2b23f);
+      transform: rotate(-3deg);
+      clip-path: polygon(2% 12%, 98% 0, 100% 80%, 96% 100%, 3% 92%, 0 40%);
+    }
+
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* ==========================================================
+       KEUNGGULAN
+       ========================================================== */
+    .features { position: relative; z-index: 5; margin-top: -38px; }
+    .features ul {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      padding: 20px 10px; list-style: none;
+      background: #fff; border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(15, 61, 42, .12);
+    }
+    .features li {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 4px 10px; border-right: 1px solid #d9ddd5;
+      font-size: 14.5px; font-weight: 500; line-height: 1.3;
+    }
+    .features li:last-child { border: 0; }
+    .features svg {
+      width: 44px; height: 36px; flex: none;
+      fill: none; stroke: var(--green-2); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ==========================================================
+       SECTION UMUM
+       ========================================================== */
+    section { padding: 70px 0; }
+    .title { font-size: clamp(28px, 4vw, 36px); color: var(--green); }
+    .title::after {
+      content: ""; display: block; width: 150px; height: 14px; margin-top: 10px;
+      background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent) center / 100% 2px no-repeat;
+    }
+    .center .title::after { margin-left: auto; margin-right: auto; }
+    .head { position: relative; margin-bottom: 34px; text-align: center; }
+    .head .btn { position: absolute; top: 6px; right: 0; }
+
+    /* ==========================================================
+       MENU
+       ========================================================== */
+    .menu-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+    .card {
+      position: relative; overflow: hidden; aspect-ratio: 6 / 5;
+      border-radius: 16px; background: var(--green);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+    }
+    .card img { width: 100%; height: 100%; object-fit: cover; transition: .4s; }
+    .card:hover img { transform: scale(1.07); }
+    .card h3 {
+      position: absolute; inset: auto 0 0 0; padding: 26px 8px 12px;
+      font-family: Inter, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.2;
+      text-align: center; color: #fff;
+      background: linear-gradient(180deg, transparent, rgba(15, 61, 42, .92) 55%);
+    }
+
+    /* ==========================================================
+       TENTANG & GALERI
+       ========================================================== */
+    #tentang { padding-top: 10px; }
+    .about { display: grid; grid-template-columns: 1fr 2fr; gap: 44px; align-items: center; }
+    .about p { margin: 18px 0 24px; }
+
+    .gallery {
+      display: grid; grid-template-columns: 1.9fr 1fr 1fr; grid-template-rows: 1fr 1fr;
+      gap: 10px; height: 330px;
+    }
+    .gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+    .gallery img:nth-child(1) { grid-row: 1 / 3; }
+    .gallery img:nth-child(4) { grid-column: 2 / 4; }
+
+    /* ==========================================================
+       LOKASI
+       ========================================================== */
+    .lokasi { background: #f1ecdc; }
+    .lokasi-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 36px; align-items: stretch; }
+
+    .info { padding: 30px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .info h3 { font-size: 22px; color: var(--green); }
+    .info dl { margin: 20px 0 26px; }
+    .info dt { margin-top: 14px; font-weight: 600; color: var(--green); }
+    .info dd { color: var(--muted); }
+
+    .map { overflow: hidden; min-height: 340px; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .map iframe { display: block; width: 100%; height: 100%; min-height: 340px; border: 0; }
+
+    /* ==========================================================
+       FOOTER
+       ========================================================== */
+    footer { background: var(--green); color: #fff; }
+    .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 10px; padding: 30px 20px; }
+    .foot > div {
+      display: flex; gap: 14px; padding: 0 18px;
+      border-left: 1px solid rgba(255, 255, 255, .25);
+      font-size: 14px; line-height: 1.5;
+    }
+    .foot > div:first-child { padding-left: 0; border: 0; }
+    .foot svg { width: 30px; height: 30px; flex: none; fill: var(--gold); }
+    .foot b { display: block; margin-bottom: 2px; font-size: 15px; }
+    .copy { padding: 14px 14px 84px; text-align: center; font-size: 13px; background: var(--green-dark); }
+
+    /* ==========================================================
+       TOMBOL WHATSAPP MELAYANG
+       ========================================================== */
+    .wa-float {
+      position: fixed; right: 18px; bottom: 18px; z-index: 60;
+      display: grid; place-items: center; width: 56px; height: 56px;
+      border-radius: 50%; background: #25d366;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+      transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.06); }
+    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* ==========================================================
+       PEMUTAR MUSIK
+       ========================================================== */
+    .player {
+      position: fixed; left: 18px; bottom: 18px; z-index: 60;
+      display: flex; align-items: center; gap: 12px;
+      width: min(380px, calc(100vw - 110px));
+      padding: 8px 14px 8px 8px;
+      color: #fff; background: rgba(15, 61, 42, .96);
+      border: 1px solid rgba(233, 189, 75, .35); border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
+      backdrop-filter: blur(6px);
+      transition: width .3s, padding .3s;
+    }
+    .player button {
+      display: grid; place-items: center; flex: none;
+      background: none; border: 0; color: inherit; cursor: pointer;
+    }
+    .player svg { width: 20px; height: 20px; fill: currentColor; }
+
+    .pl-play {
+      width: 42px; height: 42px; border-radius: 50% !important;
+      background: linear-gradient(135deg, #f3d06c, var(--gold)) !important;
+      color: #1c2a1f !important;
+      transition: transform .2s;
+    }
+    .pl-play:hover { transform: scale(1.06); }
+    .pl-play .i-pause,
+    .player.playing .pl-play .i-play { display: none; }
+    .player.playing .pl-play .i-pause { display: block; }
+
+    .pl-body { flex: 1; min-width: 0; }
+    .pl-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; line-height: 1.2;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pl-title small { font-weight: 400; opacity: .7; }
+
+    /* animasi bar equalizer saat lagu diputar */
+    .eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; flex: none; }
+    .eq i { width: 3px; height: 3px; background: var(--gold); border-radius: 1px; }
+    .player.playing .eq i { animation: eq .9s ease-in-out infinite alternate; }
+    .player.playing .eq i:nth-child(2) { animation-delay: -.3s; }
+    .player.playing .eq i:nth-child(3) { animation-delay: -.6s; }
+    @keyframes eq { from { height: 3px; } to { height: 12px; } }
+
+    .pl-row { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .pl-time { font-size: 11px; font-variant-numeric: tabular-nums; opacity: .8; flex: none; }
+
+    .player input[type=range] {
+      -webkit-appearance: none; appearance: none;
+      flex: 1; min-width: 0; height: 4px; border-radius: 4px; cursor: pointer;
+      background: linear-gradient(var(--gold), var(--gold)) 0 / var(--p, 0%) 100% no-repeat, rgba(255, 255, 255, .25);
+    }
+    .player input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 0;
+    }
+    .player input[type=range]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 0; }
+    .player input[type=range]:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .pl-vol { display: flex; align-items: center; gap: 4px; flex: none; }
+    .pl-vol input { width: 60px; flex: none !important; }
+    .pl-mute { width: 28px; height: 28px; }
+    .pl-mute .i-muted,
+    .player.muted .pl-mute .i-vol { display: none; }
+    .player.muted .pl-mute .i-muted { display: block; }
+
+    .pl-min { width: 24px; height: 24px; opacity: .7; }
+    .pl-min:hover { opacity: 1; }
+    .pl-min svg { width: 16px; height: 16px; }
+
+    /* mode diperkecil: hanya tombol play */
+    .player.mini { width: 58px; padding: 8px; }
+    .player.mini .pl-body,
+    .player.mini .pl-vol,
+    .player.mini .pl-min { display: none; }
+
+    /* ==========================================================
+       RESPONSIF
+       ========================================================== */
+    @media (max-width: 960px) {
+      header { background: rgba(15, 61, 42, .97); }
+      .burger { display: block; }
+      .menu {
+        position: absolute; top: 68px; left: 0; right: 0;
+        display: none; flex-direction: column; gap: 0;
+        padding: 10px 20px 20px; background: var(--green);
+      }
+      .menu.open { display: flex; }
+      .menu li { width: 100%; text-align: center; }
+      .menu a { display: block; padding: 12px 0; }
+      .menu .btn { display: inline-flex; margin-top: 10px; padding: 10px 24px; }
+
+      .features ul { grid-template-columns: repeat(2, 1fr); gap: 16px 0; }
+      .features li { justify-content: flex-start; border: 0; }
+      .menu-grid { grid-template-columns: repeat(3, 1fr); }
+      .about,
+      .lokasi-grid { grid-template-columns: 1fr; }
+      .head .btn { position: static; margin-top: 16px; }
+      .foot { grid-template-columns: 1fr 1fr; gap: 22px; }
+      .foot > div { padding: 0; border: 0; }
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 54px 0; }
+      .hero { min-height: 600px; background-position: 72% center; }
+      .hero::before { background: linear-gradient(180deg, rgba(15, 61, 42, .92) 0, rgba(15, 61, 42, .82) 55%, rgba(15, 61, 42, .55) 100%); }
+      .hero-text { margin: 0 auto; text-align: center; }
+      .hero .sub,
+      .cta { justify-content: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; height: auto; }
+      .gallery img { aspect-ratio: 4 / 3; }
+      .gallery img:nth-child(1),
+      .gallery img:nth-child(4) { grid-column: 1 / 3; grid-row: auto; aspect-ratio: 16 / 9; }
+      .foot { grid-template-columns: 1fr; }
+      .pl-vol input,
+      .pl-title small { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .player.playing .eq i { animation: none; height: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAVIGASI ============ -->
+  <header id="top">
+    <div class="wrap nav">
+      <a href="#beranda" class="brand" aria-label="Waroeng Tjandi Ungaran">
+        <svg viewBox="0 0 60 34" fill="none" stroke="#e9bd4b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 32 22 8l7 8 6-11 23 27"/><path d="M14 32l10-11 6 6"/></svg>
+        <span>Waroeng Tjandi<small>UNGARAN</small></span>
+      </a>
+      <button class="burger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="menu">
+        <li><a href="#beranda" class="active">Beranda</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#tentang">Tentang Kami</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#lokasi">Lokasi &amp; Kontak</a></li>
+        <li><a class="btn btn-gold wa" data-msg="Halo Waroeng Tjandi, saya ingin reservasi meja." href="#"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Reservasi</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <div class="hero" id="beranda">
+      <div class="wrap">
+        <div class="hero-text">
+          <h1>Waroeng Tjandi</h1>
+          <div class="sub">UNGARAN</div>
+          <div class="tagline">Pesona Alam Satu Rasa</div>
+          <p>Restoran keluarga dengan masakan Nusantara, suasana alam yang asri, dan pemandangan indah Gunung Ungaran.</p>
+          <div class="cta">
+            <a href="#menu" class="btn btn-gold"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v7a2 2 0 0 1-1.5 1.9V22h-2V10.9A2 2 0 0 1 2 9V2h1.5v6h1V2H6v6h1V2zm10 0c2 1 4 4 4 8 0 2-1 3.5-2.5 4V22h-2V2z"/></svg>Lihat Menu</a>
+            <a href="#" class="btn btn-line wa" data-msg="Halo Waroeng Tjandi, saya ingin reservasi meja."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Reservasi Sekarang</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ KEUNGGULAN ============ -->
+    <div class="features wrap">
+      <ul>
+        <li><svg viewBox="0 0 48 36"><path d="M3 32 18 10l6 8 5-9 16 23z"/><path d="M12 32l8-9 5 5"/></svg>Pemandangan<br>Gunung Ungaran</li>
+        <li><svg viewBox="0 0 48 36"><circle cx="16" cy="10" r="6"/><circle cx="33" cy="12" r="5"/><path d="M4 33c0-8 5-12 12-12s12 4 12 12M26 22c2-1 4-2 7-2 6 0 11 4 11 13"/></svg>Cocok untuk<br>Keluarga</li>
+        <li><svg viewBox="0 0 48 36"><path d="M10 33V12l8-8 8 8v21M10 20h16M26 14c8 2 10 14 18 17M18 33V22"/></svg>Area<br>Bermain Anak</li>
+        <li><svg viewBox="0 0 48 36"><circle cx="24" cy="8" r="5"/><circle cx="9" cy="16" r="4"/><circle cx="39" cy="16" r="4"/><path d="M14 33c0-8 4-13 10-13s10 5 10 13M2 33c0-6 3-9 7-9M46 33c0-6-3-9-7-9"/></svg>Ruang untuk<br>Rombongan</li>
+        <li><svg viewBox="0 0 48 36"><path d="M8 16l4-10h24l4 10M5 16h38v12H5zM9 28v4h6v-4M33 28v4h6v-4"/><circle cx="13" cy="22" r="2"/><circle cx="35" cy="22" r="2"/></svg>Area<br>Parkir Luas</li>
+      </ul>
+    </div>
+
+    <!-- ============ MENU ============ -->
+    <section id="menu">
+      <div class="wrap">
+        <div class="head center">
+          <h2 class="title">Menu Favorit Kami</h2>
+          <a href="#" class="btn btn-outline wa" data-msg="Halo Waroeng Tjandi, boleh minta daftar menu lengkapnya?">Lihat Semua Menu →</a>
+        </div>
+        <div class="menu-grid">
+          <article class="card"><img src="images/menu-ayam-bakar.jpg" alt="Ayam Bakar Bumbu Bali" loading="lazy"><h3>Ayam Bakar<br>Bumbu Bali</h3></article>
+          <article class="card"><img src="images/menu-gurame-bakar.jpg" alt="Gurame Bakar Tjandi" loading="lazy"><h3>Gurame Bakar<br>Tjandi</h3></article>
+          <article class="card"><img src="images/menu-cumi-asam-manis.jpg" alt="Cumi Asam Manis" loading="lazy"><h3>Cumi<br>Asam Manis</h3></article>
+          <article class="card"><img src="images/menu-nasi-goreng-seafood.jpg" alt="Nasi Goreng Seafood" loading="lazy"><h3>Nasi Goreng<br>Seafood</h3></article>
+          <article class="card"><img src="images/menu-jamur-crispy.jpg" alt="Jamur Crispy" loading="lazy"><h3>Jamur<br>Crispy</h3></article>
+          <article class="card"><img src="images/menu-aneka-minuman.jpg" alt="Aneka Minuman" loading="lazy"><h3>Aneka<br>Minuman</h3></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TENTANG & GALERI ============ -->
+    <section id="tentang">
+      <div class="wrap about">
+        <div>
+          <h2 class="title">Tentang<br>Waroeng Tjandi</h2>
+          <p>Waroeng Tjandi adalah restoran keluarga di Ungaran yang menyajikan aneka masakan Nusantara dengan cita rasa khas Indonesia, berpadu dengan suasana alam yang nyaman dan pemandangan indah Gunung Ungaran.</p>
+          <a href="#lokasi" class="btn btn-gold">Selengkapnya →</a>
+        </div>
+        <div class="gallery" id="galeri">
+          <img src="images/galeri-1.jpg" alt="Area makan semi-outdoor Waroeng Tjandi" loading="lazy">
+          <img src="images/galeri-2.jpg" alt="Pemandangan Gunung Ungaran dari area makan" loading="lazy">
+          <img src="images/galeri-3.jpg" alt="Taman dan kolam" loading="lazy">
+          <img src="images/galeri-4.jpg" alt="Area bermain anak" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOKASI & KONTAK ============ -->
+    <section id="lokasi" class="lokasi">
+      <div class="wrap">
+        <div class="head center"><h2 class="title">Lokasi &amp; Kontak</h2></div>
+        <div class="lokasi-grid">
+          <div class="info">
+            <h3>Kunjungi Kami</h3>
+            <dl>
+              <dt>Alamat</dt>
+              <dd>Jl. Siroto, Candirejo, Ungaran Barat, Kab. Semarang, Jawa Tengah</dd>
+              <dt>Jam Operasional</dt>
+              <dd>Setiap Hari, 10.00 – 21.00 WIB</dd>
+              <dt>Telepon / WhatsApp</dt>
+              <dd><a class="tel" href="#"></a></dd>
+              <dt>Instagram</dt>
+              <dd><a href="https://instagram.com/waroengtjandi" target="_blank" rel="noopener">@waroengtjandi</a></dd>
+            </dl>
+            <div class="cta">
+              <a href="#" class="btn btn-gold wa" data-msg="Halo Waroeng Tjandi, saya ingin reservasi meja."><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Reservasi via WhatsApp</a>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Waroeng+Tjandi+Ungaran" target="_blank" rel="noopener" class="btn btn-outline">Petunjuk Arah</a>
+            </div>
+          </div>
+          <div class="map">
+            <iframe title="Peta lokasi Waroeng Tjandi Ungaran" loading="lazy" src="https://www.google.com/maps?q=Waroeng+Tjandi+Ungaran&amp;output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        <span><b>Lokasi Kami</b>Jl. Siroto, Candirejo, Ungaran Barat, Kab. Semarang, Jawa Tengah</span>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm1-13h-2v6l5 3 1-1.7-4-2.3z"/></svg>
+        <span><b>Jam Operasional</b>Setiap Hari<br>10.00 – 21.00 WIB</span>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.6a1 1 0 0 1-.3 1z"/></svg>
+        <span><b>Hubungi Kami</b><a class="tel" href="#"></a></span>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5A4.5 4.5 0 1 1 12 16.5a4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.5 5.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+        <span><b>Instagram</b><a href="https://instagram.com/waroengtjandi" target="_blank" rel="noopener">@waroengtjandi</a></span>
+      </div>
+    </div>
+    <div class="copy">© <span id="yr"></span> Waroeng Tjandi Ungaran. Pesona Alam Satu Rasa.</div>
+  </footer>
+
+  <!-- ============ PEMUTAR MUSIK ============ -->
+  <div class="player" id="player" role="region" aria-label="Pemutar musik">
+    <audio id="bgm" src="audio/warung-candi.mp3" preload="metadata" loop></audio>
+
+    <button class="pl-play" type="button" aria-label="Putar lagu">
+      <svg class="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.2-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg>
+      <svg class="i-pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+    </button>
+
+    <div class="pl-body">
+      <div class="pl-title">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        Warung Candi <small>— Waroeng Tjandi</small>
+      </div>
+      <div class="pl-row">
+        <label class="sr-only" for="pl-seek">Posisi lagu</label>
+        <input id="pl-seek" class="pl-seek" type="range" min="0" max="100" step="0.1" value="0">
+        <span class="pl-time"><span class="pl-cur">0:00</span> / <span class="pl-dur">0:00</span></span>
+      </div>
+    </div>
+
+    <div class="pl-vol">
+      <button class="pl-mute" type="button" aria-label="Bisukan">
+        <svg class="i-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+        <svg class="i-muted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9zm18.7 1.4-1.4-1.4L18 11.3 15.7 9l-1.4 1.4 2.3 2.3-2.3 2.3 1.4 1.4 2.3-2.3 2.3 2.3 1.4-1.4-2.3-2.3z"/></svg>
+      </button>
+      <label class="sr-only" for="pl-volume">Volume</label>
+      <input id="pl-volume" class="pl-volume" type="range" min="0" max="1" step="0.05" value="0.6">
+    </div>
+
+    <button class="pl-min" type="button" aria-label="Perkecil pemutar" title="Perkecil">
+      <svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>
+    </button>
+  </div>
+
+  <!-- ============ TOMBOL WHATSAPP ============ -->
+  <a href="#" class="wa-float wa" data-msg="Halo Waroeng Tjandi, saya ingin bertanya." aria-label="Chat WhatsApp"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg></a>
+
+  <!-- Ikon WhatsApp (dipakai ulang) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.1 5 5 0 0 0 1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.7 3.1.6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.2-.3-.2-.5-.3z"/></symbol>
+  </svg>
+
+  <script>
+    /* ====== PENGATURAN — ganti di sini saja ====== */
+    var WA_NUMBER = "628214551528";      // nomor WhatsApp format internasional, tanpa + dan tanpa 0 di depan
+    var PHONE_DISPLAY = "0821-4551-528"; // nomor yang ditampilkan di halaman
+    var MUSIC_VOLUME = 0.6;              // volume awal musik (0 – 1)
+    /* ============================================= */
+
+    // Tautan WhatsApp & telepon
+    document.querySelectorAll(".wa").forEach(function (a) {
+      a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(a.dataset.msg || "");
+      a.target = "_blank";
+      a.rel = "noopener";
+    });
+    document.querySelectorAll(".tel").forEach(function (a) {
+      a.textContent = PHONE_DISPLAY;
+      a.href = "tel:+" + WA_NUMBER;
+    });
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    // Header & menu mobile
+    var header = document.querySelector("header");
+    var menu = document.querySelector(".menu");
+    var burger = document.querySelector(".burger");
+
+    function onScroll() { header.classList.toggle("solid", window.scrollY > 40); }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    burger.addEventListener("click", function () {
+      var open = menu.classList.toggle("open");
+      burger.setAttribute("aria-expanded", open);
+    });
+    menu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { menu.classList.remove("open"); });
+    });
+
+    // Tandai menu aktif sesuai posisi scroll
+    var links = menu.querySelectorAll('a[href^="#"]:not(.wa)');
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          links.forEach(function (l) { l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id); });
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+      ["beranda", "menu", "tentang", "galeri", "lokasi"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) io.observe(el);
+      });
+    }
+
+    // Pemutar musik
+    (function () {
+      var player = document.getElementById("player");
+      var audio = document.getElementById("bgm");
+      var btnPlay = player.querySelector(".pl-play");
+      var btnMute = player.querySelector(".pl-mute");
+      var btnMin = player.querySelector(".pl-min");
+      var seek = player.querySelector(".pl-seek");
+      var vol = player.querySelector(".pl-volume");
+      var cur = player.querySelector(".pl-cur");
+      var dur = player.querySelector(".pl-dur");
+      var seeking = false;
+
+      function fmt(s) {
+        if (!isFinite(s)) return "0:00";
+        s = Math.floor(s);
+        return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+      }
+      function fill(input) {
+        var p = (input.value - input.min) / (input.max - input.min) * 100;
+        input.style.setProperty("--p", p + "%");
+      }
+
+      audio.volume = vol.value = MUSIC_VOLUME;
+      fill(vol);
+
+      btnPlay.addEventListener("click", function () {
+        if (audio.paused) {
+          audio.play().catch(function () {});
+        } else {
+          audio.pause();
+        }
+        player.classList.remove("mini");
+      });
+      audio.addEventListener("play", function () {
+        player.classList.add("playing");
+        btnPlay.setAttribute("aria-label", "Jeda lagu");
+      });
+      audio.addEventListener("pause", function () {
+        player.classList.remove("playing");
+        btnPlay.setAttribute("aria-label", "Putar lagu");
+      });
+
+      audio.addEventListener("loadedmetadata", function () { dur.textContent = fmt(audio.duration); });
+      audio.addEventListener("timeupdate", function () {
+        cur.textContent = fmt(audio.currentTime);
+        if (!seeking && audio.duration) {
+          seek.value = audio.currentTime / audio.duration * 100;
+          fill(seek);
+        }
+      });
+
+      seek.addEventListener("input", function () {
+        seeking = true;
+        fill(seek);
+        if (audio.duration) cur.textContent = fmt(seek.value / 100 * audio.duration);
+      });
+      seek.addEventListener("change", function () {
+        if (audio.duration) audio.currentTime = seek.value / 100 * audio.duration;
+        seeking = false;
+      });
+
+      vol.addEventListener("input", function () {
+        audio.volume = vol.value;
+        audio.muted = vol.value == 0;
+        fill(vol);
+      });
+      btnMute.addEventListener("click", function () { audio.muted = !audio.muted; });
+      audio.addEventListener("volumechange", function () {
+        player.classList.toggle("muted", audio.muted);
+        btnMute.setAttribute("aria-label", audio.muted ? "Bunyikan" : "Bisukan");
+      });
+
+      btnMin.addEventListener("click", function () { player.classList.add("mini"); });
+    })();
+  </script>
+</body>
+</html>
